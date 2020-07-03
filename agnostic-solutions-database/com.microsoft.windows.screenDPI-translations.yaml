@@ -1,0 +1,3 @@
+configure:
+  capabilitiesTransformations:
+    screen-dpi: 'http://registry\.gpii\.net/common/DPIScale'

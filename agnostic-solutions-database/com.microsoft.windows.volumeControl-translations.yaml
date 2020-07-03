@@ -1,0 +1,6 @@
+configure:
+  capabilitiesTransformations:
+    Volume:
+      value: 'http://registry\.gpii\.net/common/volume'
+  inverseCapabilitiesTransformations:
+    'http://registry\.gpii\.net/common/volume': Volume.value
