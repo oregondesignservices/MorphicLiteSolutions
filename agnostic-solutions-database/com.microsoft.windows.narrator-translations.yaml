@@ -21,12 +21,6 @@ configure:
                   transform: {type: fluid.transforms.linearScale, inputPath: 'http://registry\.gpii\.net/common/speechRate', factor: 0.033333333333, offset: 5}
               -
                 output: 20
-    SpeechPitch:
-      transform:
-        type: fluid.transforms.linearScale
-        inputPath: 'http://registry\.gpii\.net/common/pitch'
-        factor: 20
-        offset: 0
     transform:
       -
         type: fluid.transforms.arrayToSetMembership
@@ -55,6 +49,8 @@ configure:
         type: fluid.transforms.condition
         'false': 0
         'true': 1
+    SpeechPitch:
+      simpleTransform: '20 * ${http://registry\.gpii\.net/common/pitch} + 0'
   inverseCapabilitiesTransformations:
     'http://registry\.gpii\.net/common/speechRate':
       transform:
@@ -77,12 +73,6 @@ configure:
             inputPath: SpeechSpeed
             factor: 30
             offset: -150
-    'http://registry\.gpii\.net/common/pitch':
-      transform:
-        type: fluid.transforms.linearScale
-        inputPath: SpeechPitch
-        factor: 0.05
-        offset: 0
     transform:
       -
         type: fluid.transforms.setMembershipToArray
@@ -94,18 +84,12 @@ configure:
           CoupleNarratorCursorKeyboard: focus
           FollowInsertion: caret
           InteractionMouse: mouse
+    'http://registry\.gpii\.net/common/pitch':
+      simpleTransform: '0.05 * ${SpeechPitch} + 0'
     'http://registry\.gpii\.net/common/keyEcho':
-      transform:
-        type: fluid.transforms.binaryOp
-        leftPath: EchoChars
-        right: 0
-        operator: '!=='
+      simpleTransform: '${EchoChars} !==0'
     'http://registry\.gpii\.net/common/wordEcho':
-      transform:
-        type: fluid.transforms.binaryOp
-        leftPath: EchoWords
-        right: 0
-        operator: '!=='
+      simpleTransform: '${EchoWords} !==0'
 configureNoRoam:
   capabilitiesTransformations:
     SpeechVolume:

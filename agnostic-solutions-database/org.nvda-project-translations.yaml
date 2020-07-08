@@ -18,11 +18,6 @@ configs:
         conditionPath: 'http://registry\.gpii\.net/common/speakTutorialMessages'
         'true': 'True'
         'false': 'False'
-    speech\.espeak\.pitch:
-      transform:
-        type: fluid.transforms.linearScale
-        inputPath: 'http://registry\.gpii\.net/common/pitch'
-        factor: 100
     speech\.espeak\.rate:
       transform:
         type: fluid.transforms.round
@@ -108,16 +103,6 @@ configs:
           zh-yue: zh-yue
         noMatch:
           outputValue: en-us
-    speech\.espeak\.volume:
-      transform:
-        type: fluid.transforms.linearScale
-        inputPath: 'http://registry\.gpii\.net/common/volumeTTS'
-        factor: 100
-    speech\.oneCore\.pitch:
-      transform:
-        type: fluid.transforms.linearScale
-        inputPath: 'http://registry\.gpii\.net/common/pitch'
-        factor: 100
     speech\.oneCore\.rate:
       transform:
         type: fluid.transforms.round
@@ -132,16 +117,6 @@ configs:
         conditionPath: 'http://registry\.gpii\.net/common/announceCapitals'
         'true': 'True'
         'false': 'False'
-    speech\.oneCore\.volume:
-      transform:
-        type: fluid.transforms.linearScale
-        inputPath: 'http://registry\.gpii\.net/common/volumeTTS'
-        factor: 100
-    speech\.sapi5\.pitch:
-      transform:
-        type: fluid.transforms.linearScale
-        inputPath: 'http://registry\.gpii\.net/common/pitch'
-        factor: 100
     speech\.sapi5\.rate:
       transform:
         type: fluid.transforms.round
@@ -156,11 +131,6 @@ configs:
         conditionPath: 'http://registry\.gpii\.net/common/announceCapitals'
         'true': 'True'
         'false': 'False'
-    speech\.sapi5\.volume:
-      transform:
-        type: fluid.transforms.linearScale
-        inputPath: 'http://registry\.gpii\.net/common/volumeTTS'
-        factor: 100
     speech\.silence\.sayCapForCapitals:
       transform:
         type: fluid.transforms.condition
@@ -213,6 +183,18 @@ configs:
                   type: fluid.transforms.literalValue
                   input: 'Microsoft Sound Mapper'
                   outputPath: speech\.outputDevice
+    speech\.espeak\.pitch:
+      simpleTransform: '100 * ${http://registry\.gpii\.net/common/pitch} + 0'
+    speech\.espeak\.volume:
+      simpleTransform: '100 * ${http://registry\.gpii\.net/common/volumeTTS} + 0'
+    speech\.oneCore\.pitch:
+      simpleTransform: '100 * ${http://registry\.gpii\.net/common/pitch} + 0'
+    speech\.oneCore\.volume:
+      simpleTransform: '100 * ${http://registry\.gpii\.net/common/volumeTTS} + 0'
+    speech\.sapi5\.pitch:
+      simpleTransform: '100 * ${http://registry\.gpii\.net/common/pitch} + 0'
+    speech\.sapi5\.volume:
+      simpleTransform: '100 * ${http://registry\.gpii\.net/common/volumeTTS} + 0'
   inverseCapabilitiesTransformations:
     'http://registry\.gpii\.net/common/speakTutorialMessages': presentation\.reportHelpBalloons
     'http://registry\.gpii\.net/common/keyEcho': keyboard\.speakTypedCharacters
