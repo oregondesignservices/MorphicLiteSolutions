@@ -1,0 +1,56 @@
+{
+    extraWidgets: [
+        {
+            id: "google-photos-button",
+
+            category: "photos",
+            widget: "button",
+            actionType: "web",
+            actionData: "https://photos.google.com",
+
+            text: "Google Photos",
+            icon: "",
+            popupText: "Google Photos",
+            description: ""
+        },
+        {
+            id: "macos-photos-button",
+
+            category: "photos",
+            widget: "button",
+            actionType: "app",
+            actionData: "TODO",
+
+            text: "Apple Photos",
+            icon: "",
+            popupText: "Opens Apple Photos to a preferred album",
+            description: ""
+        },
+        {
+            id: "icloud-photos-button",
+
+            category: "photos",
+            widget: "button",
+            actionType: "website",
+            actionData: "TODO",
+
+            text: "iCloud Photos",
+            icon: "",
+            popupText: "Opens Apple Photos to a preferred album",
+            description: "Similar to the Apple Photos buttons but opens your photos from the iCloud url"
+        },
+        {
+            id: "windows-photos-button",
+
+            category: "photos",
+            widget: "button",
+            actionType: "app",
+            actionData: "TODO",
+
+            text: "Windows Photos",
+            icon: "",
+            popupText: "Opens Windows Photos to a preferred album",
+            description: ""
+        }
+    ]
+}

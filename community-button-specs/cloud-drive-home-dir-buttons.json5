@@ -1,0 +1,69 @@
+{
+    extraWidgets: [
+        {
+            id: "dropbox-homedir-button",
+
+            category: "cloud-drive-home-location",
+            widget: "button",
+            actionType: "web",
+            actionData: "https://www.dropbox.com/h",
+
+            text: "Dropbox Home Folder",
+            icon: "",
+            popupText: "Opens your Dropbox",
+            description: ""
+        },
+        {
+            id: "googledrive-homedir-button",
+
+            category: "cloud-drive-home-location",
+            widget: "button",
+            actionType: "web",
+            actionData: "https://drive.google.com/drive/my-drive",
+
+            text: "Google Drive Home",
+            icon: "",
+            popupText: "Opens your Google Drive",
+            description: ""
+        },
+        {
+            id: "icloudfiles-homedir-button",
+
+            category: "icloudfiles-home-location",
+            widget: "button",
+            actionType: "web",
+            actionData: "https://www.icloud.com/iclouddrive/",
+
+            text: "iCloud Files Home Folder",
+            icon: "",
+            popupText: "Opens your iCloud Files",
+            description: ""
+        },
+        {
+            id: "box-homedir-button",
+
+            category: "box-home-location",
+            widget: "button",
+            actionType: "web",
+            actionData: "https://www.box.com", // TODO This URL needs to be more specific
+
+            text: "Box Home Folder",
+            icon: "",
+            popupText: "Opens your Box Home Folder",
+            description: ""
+        },
+        {
+            id: "onedrive-homedir-button",
+
+            category: "onedrive-home-location",
+            widget: "button",
+            actionType: "web",
+            actionData: "https://onedrive.live.com/?id=root",
+
+            text: "One Drive Folder",
+            icon: "",
+            popupText: "Opens your Microsoft One Drive Home Folder",
+            description: ""
+        }
+    ]
+}

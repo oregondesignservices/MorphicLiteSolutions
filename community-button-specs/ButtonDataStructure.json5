@@ -1,0 +1,138 @@
+# Data structure for Morphic Bar
+
+This is what the client will be expecting.
+
+```json5
+{
+  // Colours (and perhaps other visual things)
+  theme: {
+    background: "white",
+    // Default widget theme
+    widget: {
+      text: "white",
+      background: "#002957"
+    }
+  },
+
+  // The items for the bar
+  barWidgets: [
+    {
+      // email|calendar|videocall|photos|...
+      // Probably be ignored by the client
+      category: "calendar",
+
+      // unique identifier (probably ignored by client)
+      id: "calendar-button",
+
+      // "button" for buttons, or "toggle" for toggle switches
+      widget: "button",
+
+      // app|shell|web|control-panel|func:name
+      actionType: "web",
+      // command/url, depending on the "type"
+      actionData: "http://calendar.google.com",
+
+      // Displayed on the button
+      text: "Calendar",
+      // local/remote url of the icon
+      icon: "calendar.png",
+      // Tooltip
+      popupText: "Open the calendar",
+      // More details
+      description: "Displays your google calendar"
+
+      theme: {
+        // per-button theme, overrides the `theme.widget` field from above.
+      }
+    }, {
+      // A toggle switch - same as a button, except `actionType` and `actionData` are moved inside `on` and `off`.
+      // `on` and `off` behave like buttons.
+      id: "read-write"
+      widget: "toggle",
+      name: "Read Write",
+
+      // Set the preference
+      preference: "gpii.readwrite.enabled",
+
+      // If `preference` is undefined, then `state`, `on`, and `off` are used, which behave like buttons.
+
+      // Detect the current state - will be a built-in function that returns a boolean, or command (exit 0 = 'on')
+      state: {
+        // Perhaps if `on.actionType` is `app`, this isn't required.
+        actionType: "shell",
+        actionData: "Get-Process read-write.exe"
+      },
+      on: {
+        text: "On", // default: "On",
+        // same as a button's `actionType`/`actionData`
+        actionType: "app",
+        actionData: "read-write.exe"
+      },
+      off: {
+        // Same structure as `on`.
+      }
+    }
+  ],
+
+  // The items for the pull-out
+  extraWidgets: [
+    {
+      // same structure as `barWidgets` above
+    }
+  ]
+}
+```
+
+## Widget types
+
+* `button`: A button
+* `toggle`: on/off switch
+* `logo`: A logo (behaves like a button, but is just an image)
+
+## Button actions
+
+|`actionType`|`actionData`| |
+|-|-|-|
+|`app`|Path to the executable, and the arguments.|Starts an application, or activate a running instance|
+|`shell`|Command string|Run a command (powershell on Windows)|
+|`web`|The url|Open a website|
+|`settings`|See https://ss64.com/nt/syntax-settings.html |Opens a page in the settings app (Windows).|
+|`func:fname`|Something to pass to the function|Invokes a built-in function `fname`.|
+
+
+### Built-in functions
+
+For things that can't be described using the other action types.
+
+|fname|Description|
+|-|-|
+|copy|Send ^C to the active application|
+|paste|Send ^V to the active application|
+|open-drawer|Displays the widgets in `extraWidgets`|
+
+## Cross-platform
+
+All fields in the above json can be suffixed with an OS identifier (`$mac` or `$win`), which will take precedence over the non-suffixed field. This pre-processing would be done on the client.
+
+examples:
+
+```JSON5
+[
+  {
+    actionData: "default command",
+    actionData$mac: "macOS command",
+
+    popupText$win: "on windows",
+    popupText: "not windows"
+  },
+  {
+    actionData: "default command",
+    actionData$win: "windows command"
+  },
+  {
+    actionData: "default command (ignored)",
+    actionData$win: "windows command",
+    actionData$mac: "macOS command"
+  },
+]
+```

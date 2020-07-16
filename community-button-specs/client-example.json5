@@ -1,0 +1,84 @@
+/**
+ *  stegru's morphic-bar client spec format from:
+ *  https://gist.github.com/stegru/9e0b866a9933cdbad4d0e6f6ea26c706
+ *
+ *  Here for reference.
+ */
+{
+  // Colours (and perhaps other visual things)
+  theme: {
+    background: "white",
+    // Default widget theme
+    widget: {
+      text: "white",
+      background: "#002957"
+    }
+  },
+
+  // The items for the bar
+  barWidgets: [
+    {
+      // email|calendar|videocall|photos|...
+      // Probably be ignored by the client
+      category: "calendar",
+
+      // unique identifier (probably ignored by client)
+      id: "calendar-button",
+
+      // "button" for buttons, or "toggle" for toggle switches
+      widget: "button",
+
+      // app|shell|web|control-panel|func:name
+      actionType: "web",
+      // command/url, depending on the "type"
+      actionData: "http://calendar.google.com",
+
+      // Displayed on the button
+      text: "Calendar",
+      // local/remote url of the icon
+      icon: "calendar.png",
+      // Tooltip
+      popupText: "Open the calendar",
+      // More details
+      description: "Displays your google calendar"
+
+      theme: {
+        // per-button theme, overrides the `theme.widget` field from above.
+      }
+    }, {
+      // A toggle switch - same as a button, except `actionType` and `actionData` are moved inside `on` and `off`.
+      // `on` and `off` behave like buttons.
+      id: "read-write"
+      widget: "toggle",
+      name: "Read Write",
+
+      // Set the preference
+      preference: "gpii.readwrite.enabled",
+
+      // If `preference` is undefined, then `state`, `on`, and `off` are used, which behave like buttons.
+
+      // Detect the current state - will be a built-in function that returns a boolean, or command (exit 0 = 'on')
+      state: {
+        // Perhaps if `on.actionType` is `app`, this isn't required.
+        actionType: "shell",
+        actionData: "Get-Process read-write.exe"
+      },
+      on: {
+        text: "On", // default: "On",
+        // same as a button's `actionType`/`actionData`
+        actionType: "app",
+        actionData: "read-write.exe"
+      },
+      off: {
+        // Same structure as `on`.
+      }
+    }
+  ],
+
+  // The items for the pull-out
+  extraWidgets: [
+    {
+      // same structure as `barWidgets` above
+    }
+  ]
+}
