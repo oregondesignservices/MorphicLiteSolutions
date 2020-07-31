@@ -1,0 +1,10 @@
+name: 'Kurzweil 1000'
+settingsHandlers:
+  configure:
+    type: gpii.settingsHandlers.noSettings
+contexts:
+  OS:
+    -
+      windows:
+        id: win32
+        version: '>=5.0'
