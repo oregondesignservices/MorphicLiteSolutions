@@ -1,0 +1,3 @@
+configure:
+  capabilitiesTransformations:
+    sc: 'http://registry\.gpii\.net/common/speechControl'

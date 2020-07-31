@@ -1,0 +1,3 @@
+configuration:
+  capabilitiesTransformations:
+    ApplicationSettings: ApplicationSettings

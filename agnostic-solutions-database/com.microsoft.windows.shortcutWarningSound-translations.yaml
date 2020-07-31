@@ -1,0 +1,11 @@
+configure:
+  capabilitiesTransformations:
+    'Sound on Activation':
+      transform:
+        type: fluid.transforms.condition
+        conditionPath: 'http://registry\.gpii\.net/applications/com\.microsoft\.windows\.shortcutWarningSound.Enabled'
+        'false': 0
+        'true': 1
+  inverseCapabilitiesTransformations:
+    'http://registry\.gpii\.net/applications/com\.microsoft\.windows\.shortcutWarningSound.Enabled':
+      simpleTransform: '${Sound on Activation} !==0'

@@ -1,0 +1,11 @@
+configuration:
+  capabilitiesTransformations:
+    Preferences\.PromptOnExit:
+      literalValue: 0
+    PRIMARY\.magPower:
+      simpleTransform: '100 * ${http://registry\.gpii\.net/common/magnification} + 0'
+    'STATIC 1\.magPower':
+      simpleTransform: '100 * ${http://registry\.gpii\.net/common/magnification} + 0'
+  inverseCapabilitiesTransformations:
+    'http://registry\.gpii\.net/common/magnification':
+      simpleTransform: '0.01 * ${PRIMARY\.magPower} + 0'

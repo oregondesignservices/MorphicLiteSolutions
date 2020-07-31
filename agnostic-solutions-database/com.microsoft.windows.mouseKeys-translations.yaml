@@ -1,0 +1,26 @@
+configure:
+  capabilitiesTransformations:
+    MouseKeysOn:
+      value: 'http://registry\.gpii\.net/common/mouseEmulation/enabled'
+      path:
+        transform:
+          type: fluid.transforms.literalValue
+          input: pvParam.dwFlags.MKF_MOUSEKEYSON
+    MaxSpeed:
+      value:
+        transform:
+          type: fluid.transforms.round
+          input:
+            transform:
+              type: fluid.transforms.linearScale
+              inputPath: 'http://registry\.gpii\.net/common/cursorSpeed'
+              factor: 350
+              offset: 10
+      path:
+        transform:
+          type: fluid.transforms.literalValue
+          input: pvParam.iMaxSpeed
+  inverseCapabilitiesTransformations:
+    'http://registry\.gpii\.net/common/mouseEmulation/enabled': MouseKeysOn.value
+    'http://registry\.gpii\.net/common/cursorSpeed':
+      simpleTransform: '0.00285714285714 * ${MaxSpeed.value} + -0.0285714285714'
